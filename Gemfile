@@ -22,8 +22,8 @@ gem 'figaro'
 gem 'devise'
 
 group :development, :test do
-  gem 'capistrano'
-  gem 'capistrano-rails'
+  gem 'capistrano', '3.19.2'
+  gem 'capistrano-rails', '1.7.0'
   gem 'capistrano-rvm'
   gem 'capistrano3-puma' , group: :development
 end
