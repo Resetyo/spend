@@ -18,9 +18,15 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem 'pg'
-gem 'capistrano'
-gem 'capistrano-rails'
 gem 'figaro'
+gem 'devise'
+
+group :development, :test do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma' , group: :development
+end
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
