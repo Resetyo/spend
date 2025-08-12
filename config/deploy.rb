@@ -5,7 +5,8 @@ set :application, "spend"
 set :repo_url, "git@github.com:Resetyo/spend.git"
 
 set :deploy_to, '~/spend'
-set :rvm_ruby_version, '3.4.4' 
+set :rvm_ruby_version, '3.4.4'
+set :branch, 'main'
 
 append :linked_files, 'config/application.yml', 'config/database.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'vendor', 'storage', '.bundle', 'tmp'
