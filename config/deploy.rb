@@ -4,7 +4,7 @@ lock "~> 3.19.2"
 set :application, "spend"
 set :repo_url, "git@github.com:Resetyo/spend.git"
 
-set :deploy_to, '~/spend'
+set :deploy_to, '/home/wedding/spend'
 set :rvm_ruby_version, '3.4.4'
 set :branch, 'main'
 
