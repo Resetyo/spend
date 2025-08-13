@@ -8,7 +8,7 @@ set :deploy_to, '~/spend'
 set :rvm_ruby_version, '3.4.4'
 set :branch, 'main'
 
-append :linked_files, 'config/application.yml', 'config/database.yml'
+append :linked_files, 'config/application.yml', 'config/database.yml', '/config/master.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'vendor', 'storage', '.bundle', 'tmp'
 # append :linked_files, 'config/puma.rb'
 set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"
