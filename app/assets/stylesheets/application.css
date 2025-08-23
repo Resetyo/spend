@@ -21,3 +21,13 @@
   text-align: center;
   padding: 10px;
 }
+
+.flash {
+  position: relative;
+}
+
+.flash-close {
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
