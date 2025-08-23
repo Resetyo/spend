@@ -1,0 +1,14 @@
+<div class="modal-wrapper" id="categoryModal" data-controller="modal">
+  <div class="modal spend-modal">
+    <h2>Добавить категорию</h2>
+
+    <%= form_for(@category, url: params[:category_id] ? category_path(@category) : categories_path, html: { class: 'appear', method: (params[:category_id] ? :put : :post) }) do |f| %>
+      <div>
+          <%= f.label :title, 'Название' %>
+          <%= f.text_field :title %>
+      </div>
+
+      <%= f.submit params[:category_id] ? 'Редактировать' : 'Добавить', class: 'btn' %>
+    <% end %>
+  </div>      
+</div>

@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <div class="container">
+    <h1>Итоги</h1>
+
+    <table class="table">
+      <% @grouped_items.each do |date, by_date| %>
+        <tr>
+          <th>Месяц</th>
+          <% by_date.keys.each do |category_id| %>
+            <th><%= @categories.find { _1.last == category_id }&.first %></th>
+          <% end %>
+        </tr>
+
+        <tr>
+          <% by_date.each do |category, by_category| %>
+            <td><%= by_category %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

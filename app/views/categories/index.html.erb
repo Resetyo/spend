@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="container">
+    <%= render "devise/shared/error_messages", resource: @category %>
+
+    <h1>Категории</h1>
+
+    <table class="table">
+      <tr>
+        <th>Дата</th>
+        <th>Категория</th>
+        <th></th>
+      </tr>
+
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.created_at.strftime('%d.%m') %></td>
+          <td><%= category.title %></td>
+          <td>
+            <%= link_to 'Изм', categories_path(category_id: category.id) %>
+            <%= link_to 'Удл', category_path(category), data: { turbo_method: :delete } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <button class="btn" data-toggle="modal" data-target="categoryModal">Добавить</button>
+  </div>
+</div>
+
+<%= render 'layouts/modal_category' %>

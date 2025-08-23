@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="container">
+    <%= render "devise/shared/error_messages", resource: @source %>
+
+    <h1>Источники</h1>
+
+    <table class="table">
+      <tr>
+        <th>Дата</th>
+        <th>Источник</th>
+        <th></th>
+      </tr>
+
+      <% @sources.each do |source| %>
+        <tr>
+          <td><%= source.created_at.strftime('%d.%m') %></td>
+          <td><%= source.title %></td>
+          <td>
+            <%= link_to 'Изм', sources_path(source_id: source.id) %>
+            <%= link_to 'Удл', source_path(source), data: { turbo_method: :delete } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <button class="btn" data-toggle="modal" data-target="sourceModal">Добавить</button>
+  </div>
+</div>
+
+<%= render 'layouts/modal_source' %>

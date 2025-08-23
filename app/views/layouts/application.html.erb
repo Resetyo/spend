@@ -23,6 +23,19 @@
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
+
+    <% flash.each do |name, msg| %>
+    <div class='flash'>
+      <%= content_tag :div, msg, class: name %>
+      <span class="flash-close">x</span>
+    </div>
+    <% end %>
+
     <%= yield %>
+
+    <%= render 'layouts/modal' %>
+
+    <%= javascript_include_tag 'init.js' %>
   </body>
 </html>

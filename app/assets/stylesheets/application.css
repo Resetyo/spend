@@ -8,3 +8,16 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.notice {
+  background-color: green;
+}
+
+.alert {
+  background-color: coral;
+}
+
+.notice, .alert {
+  text-align: center;
+  padding: 10px;
+}

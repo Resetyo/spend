@@ -1,1 +1,40 @@
-spend1
+<div class="wrapper">
+  <div class="container">
+    <%= render "devise/shared/error_messages", resource: @spend %>
+
+    <h1>Траты</h1>
+
+    <table class="table">
+      <tr>
+          <th>Дата</th>
+          <th>Наименование</th>
+          <th>Категория</th>
+          <th>Сумма</th>
+          <th>Источник</th>
+          <th></th>
+      </tr>
+
+      <% @spends.each do |spend| %>
+        <tr>
+            <td><%= spend.created_at.strftime('%d.%m') %></td>
+            <td><%= spend.title %></td>
+            <td><%= @categories.find { _1.last == spend.category_id }&.first %></td>
+            <td><%= spend.amount %></td>
+            <td><%= @sources.find { _1.last == spend.source_id }&.first %></td>
+            <td>
+              <%= spend.like_id %>
+              <%= link_to 'Изм', spends_path(spend_id: spend.id) %>
+            </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <form class="search" action="/">
+        <div class="row">
+            <div class="form-group">
+                <input type="text" id="писун" placeholder="найти...">
+            </div>       
+        </div>
+    </form>
+  </div>      
+</div>      

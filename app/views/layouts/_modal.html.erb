@@ -1,0 +1,39 @@
+<div class="modal-wrapper" id="spendModal" data-controller="modal">
+  <div class="modal spend-modal">
+    <h2>Добавить траты</h2>
+
+    <%= form_for(@spend, url: params[:spend_id] ? spend_path(@spend) : spends_path, html: { class: 'appear', method: (params[:spend_id] ? :put : :post) }) do |f| %>
+      <div>
+          <%= f.label :title, 'Название' %>
+          <%= f.text_field :title %>
+      </div>
+
+      <div>
+        <%= f.label :amount, 'Сумма' %>
+        <%= f.number_field :amount %>
+      </div>
+
+      <div>
+        <%= f.label :category_id, 'Категория' %>
+        <%= f.select :category_id, Category.pluck(:title, :id), include_blank: true %>
+      </div>
+
+      <div>
+        <%= f.label :source_id, 'Источник' %>
+        <%= f.select :source_id, Source.pluck(:title, :id), include_blank: true %>
+      </div>
+
+      <div>
+        <%= f.label :like %>
+        <%= f.checkbox :like %>
+      </div>
+
+      <div>
+        <%= f.label :like_id %>
+        <%= f.number_field :like_id %>
+      </div>
+
+      <%= f.submit params[:spend_id] ? 'Редактировать' : 'Добавить', class: 'btn' %>
+    <% end %>
+  </div>      
+</div>
