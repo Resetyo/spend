@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "spends#index"
+  root "spends#total"
 
   resources :spends do
     get 'total', on: :collection

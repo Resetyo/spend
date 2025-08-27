@@ -1,22 +1,52 @@
-<div class="wrapper">
+<div class="wrapper" data-controller="charts">
   <div class="container">
     <h1>Итоги</h1>
+
+    <ul>
+      <% @sources.each do |source| %>
+        <li><%= source.title %> <%= source.amount %></li>
+      <% end %>
+    </ul>
 
     <table class="table">
       <% @grouped_items.each do |date, by_date| %>
         <tr>
           <th>Месяц</th>
-          <% by_date.keys.each do |category_id| %>
-            <th><%= @categories.find { _1.last == category_id }&.first %></th>
+          <% by_date.keys.each do |category| %>
+            <th><%= category %></th>
           <% end %>
+          <th>Итого</th>
         </tr>
 
         <tr>
+          <td><%= date %></td>
           <% by_date.each do |category, by_category| %>
-            <td><%= by_category %></td>
+            <td><%= by_category %>р.</td>
           <% end %>
+          <td><%= by_date.values.sum %>р.</td>
         </tr>
       <% end %>
     </table>
+
+    <ul class="menu date-btn">
+      <li><button class="btn">Выбрать дату</button></li>
+    </ul>
+
+    <div class="chart">
+        <canvas id="chart1"></canvas>
+    </div>
+
+    <div class="chart"> 
+        <canvas id="chart2"></canvas>
+    </div>
   </div>
 </div>
+
+<script data-turbo-track="reload">
+  const chart1labels = <%= raw @grouped_items.keys.to_json %>;
+  const chart1data = <%= @grouped_items.values.map { |by_date| by_date.values.sum } %>;
+  const chart2labels = <%= raw @grouped_items[@grouped_items.keys.first]&.keys&.to_json %>;
+  const chart2data = <%= @grouped_items[@grouped_items.keys.first]&.values %>;
+</script>
+
+<%= javascript_include_tag 'chart.js', "data-turbo-track": "reload" %>

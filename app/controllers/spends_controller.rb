@@ -2,7 +2,7 @@ class SpendsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @spends = SpendItem.order(created_at: :desc)
+    @spends = SpendItem.all
     @spend = if params[:spend_id]
                spend = SpendItem.find(params[:spend_id])
                spend.like = 1 if spend.like_id
@@ -16,11 +16,13 @@ class SpendsController < ApplicationController
 
   def total
     @categories = Category.pluck(:title, :id)
+    @sources = Source.all
 
     @grouped_items = SpendItem.all
-                              .group_by { |item| item.created_at.month.to_s + "-" + item.created_at.year.to_s }
+                              .group_by { |item| item.created_at.strftime('%m-%y') }
                               .transform_values do |group_by_date|
-      group_by_date.group_by(&:category_id).transform_values do |group_by_category|
+      group_by_date.group_by { |item| @categories.find { |category| category.last == item.category_id }.first }
+                   .transform_values do |group_by_category|
         group_by_category.sum(&:amount)
       end
     end

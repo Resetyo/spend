@@ -39,6 +39,6 @@ class SourcesController < ApplicationController
   private
 
   def source_params
-    params.require(:source).permit(:title)
+    params.require(:source).permit(:title, :amount)
   end
 end

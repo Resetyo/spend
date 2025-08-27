@@ -6,7 +6,7 @@
         <li><%= link_to 'Категории', categories_path, class: 'btn' %></li>
         <li><%= link_to 'Источники', sources_path, class: 'btn' %></li>
         <li><button class="btn" data-toggle="modal" data-target="spendModal">Потратить</button></li>
-        <li><%= link_to 'Сводная таблица', total_spends_path, class: 'btn' %></li>
+        <li><%= link_to 'Сводная таблица', total_spends_path, class: 'btn', data: { turbo: false } %></li>
         <% if current_user %>
           <li><%= link_to 'Выход', destroy_user_session_path, class: 'btn', method: :delete %></li>
         <% end %>

@@ -24,6 +24,7 @@
             <td>
               <%= spend.like_id %>
               <%= link_to 'Изм', spends_path(spend_id: spend.id) %>
+              <%= link_to 'Удл', spend_path(spend), data: { turbo_method: :delete } %>
             </td>
         </tr>
       <% end %>

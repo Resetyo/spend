@@ -1,6 +1,6 @@
 <div class="modal-wrapper" id="sourceModal" data-controller="modal">
   <div class="modal spend-modal">
-    <h2>Добавить категорию</h2>
+    <h2>Добавить источник</h2>
 
     <%= form_for(@source, url: params[:source_id] ? source_path(@source) : sources_path, html: { class: 'appear', method: (params[:source_id] ? :put : :post) }) do |f| %>
       <div>
@@ -8,7 +8,12 @@
           <%= f.text_field :title %>
       </div>
 
-      <%= f.submit params[:source_id] ? 'Редактировать' : 'Добавить', class: 'btn' %>
+      <div>
+        <%= f.label :amount, 'Баланс' %>
+        <%= f.number_field :amount %>
+      </div>
+
+      <%= f.submit params[:source_id] ? 'Применить' : 'Добавить', class: 'btn' %>
     <% end %>
   </div>      
 </div>
