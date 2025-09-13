@@ -19,7 +19,7 @@
             <td><%= spend.created_at.strftime('%d.%m') %></td>
             <td><%= spend.title %></td>
             <td><%= @categories.find { _1.last == spend.category_id }&.first %></td>
-            <td><%= spend.amount %></td>
+            <td style="<%= 'background-color: #a3a300;' if spend.amount < 0 %>"><%= spend.amount.abs %></td>
             <td><%= @sources.find { _1.last == spend.source_id }&.first %></td>
             <td>
               <%= spend.like_id %>

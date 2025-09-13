@@ -29,8 +29,8 @@
       </div>
 
       <div>
-        <%= f.label :like_id %>
-        <%= f.number_field :like_id %>
+        <%= f.label :replenishment, 'Пополнение' %>
+        <%= f.checkbox :replenishment %>
       </div>
 
       <%= f.submit params[:spend_id] ? 'Применить' : 'Добавить', class: 'btn' %>

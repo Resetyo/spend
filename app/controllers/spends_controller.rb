@@ -21,7 +21,7 @@ class SpendsController < ApplicationController
     @grouped_items = SpendItem.all
                               .group_by { |item| item.created_at.strftime('%m-%y') }
                               .transform_values do |group_by_date|
-      group_by_date.group_by { |item| @categories.find { |category| category.last == item.category_id }.first }
+      group_by_date.group_by { |item| @categories.find { |category| category.last == item.category_id }&.first }
                    .transform_values do |group_by_category|
         group_by_category.sum(&:amount)
       end
@@ -60,6 +60,6 @@ class SpendsController < ApplicationController
   private
 
   def spend_item_params
-    params.require(:spend_item).permit(:title, :category_id, :amount, :source_id, :like, :created_at)
+    params.require(:spend_item).permit(:title, :category_id, :amount, :source_id, :like, :created_at, :replenishment)
   end
 end
