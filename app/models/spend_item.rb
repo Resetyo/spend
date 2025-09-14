@@ -12,7 +12,7 @@ class SpendItem < ApplicationRecord
   private
 
   def replenishment?
-    replenishment.present?
+    replenishment.to_i == 1
   end
 
   def revert_amount
