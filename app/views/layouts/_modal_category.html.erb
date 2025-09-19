@@ -8,6 +8,11 @@
           <%= f.text_field :title %>
       </div>
 
+      <div>
+        <%= f.label :position, 'Порядковый номер' %>
+        <%= f.number_field :position %>
+      </div>
+
       <%= f.submit params[:category_id] ? 'Применить' : 'Добавить', class: 'btn' %>
     <% end %>
   </div>      

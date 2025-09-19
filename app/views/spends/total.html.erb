@@ -2,9 +2,9 @@
   <div class="container">
     <h1>Итоги</h1>
 
-    <ul>
+    <ul style="display: flex;list-style-type: none;">
       <% @sources.each do |source| %>
-        <li><%= source.title %> <%= source.amount %></li>
+        <li style="margin-right: 10px;"><%= source.title %> <%= source.amount %></li>
       <% end %>
     </ul>
 

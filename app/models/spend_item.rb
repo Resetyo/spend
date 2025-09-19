@@ -4,7 +4,7 @@ class SpendItem < ApplicationRecord
 
   attr_accessor :like, :replenishment
 
-  before_save :revert_amount, if:  :replenishment?
+  before_save :revert_amount, if: :replenishment?
   after_save :change_source_amount
 
   default_scope { order(created_at: :desc) }

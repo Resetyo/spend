@@ -13,6 +13,11 @@
         <%= f.number_field :amount %>
       </div>
 
+      <div>
+        <%= f.label :position, 'Порядковый номер' %>
+        <%= f.number_field :position %>
+      </div>
+
       <%= f.submit params[:source_id] ? 'Применить' : 'Добавить', class: 'btn' %>
     <% end %>
   </div>      

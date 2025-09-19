@@ -3,7 +3,6 @@ class SourcesController < ApplicationController
     @sources = Source.all
     @source = if params[:source_id]
                 source = Source.find(params[:source_id])
-                source.like = 1 if source.like_id
               else
                 Source.new
               end
@@ -39,6 +38,6 @@ class SourcesController < ApplicationController
   private
 
   def source_params
-    params.require(:source).permit(:title, :amount)
+    params.require(:source).permit(:title, :amount, :position)
   end
 end
