@@ -16,7 +16,7 @@
         <tr>
           <td><%= source.created_at.strftime('%d.%m') %></td>
           <td><%= source.title %></td>
-          <td><%= source.amount %></td>
+          <td><%= source.amount %>р.</td>
           <td>
             <%= link_to 'Изм', sources_path(source_id: source.id) %>
             <%= link_to 'Удл', source_path(source), data: { turbo_method: :delete } %>

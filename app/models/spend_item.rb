@@ -21,7 +21,8 @@ class SpendItem < ApplicationRecord
   end
 
   def change_source_amount
-    Source.find_by(id: source_id_was)&.update(amount: source.amount + amount)
+    source_was = Source.find_by(id: source_id_previously_was)
+    source_was&.update(amount: source_was.amount + amount)
     self.source&.update(amount: source.amount - amount)
   end
 

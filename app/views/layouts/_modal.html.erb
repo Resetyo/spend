@@ -20,7 +20,7 @@
 
       <div>
         <%= f.label :source_id, 'Источник' %>
-        <%= f.select :source_id, Source.all.map { |source| ["#{source.title} #{source.amount}", source.id] } %>
+        <%= f.select :source_id, Source.all.map { |source| ["#{source.title} #{source.amount}р.", source.id] } %>
       </div>
 
       <div>
