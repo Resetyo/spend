@@ -4,7 +4,7 @@ class SpendItem < ApplicationRecord
 
   attr_accessor :like, :replenishment
 
-  before_save :revert_amount, if: :replenishment?
+  before_save :negative_amount, if: :replenishment?
   after_save :change_source_amount
   after_destroy :revert_source_amount
 
@@ -16,13 +16,18 @@ class SpendItem < ApplicationRecord
     replenishment.to_i == 1
   end
 
-  def revert_amount
+  def negative_amount
     self.amount = -amount
   end
 
   def change_source_amount
-    source_was = Source.find_by(id: source_id_previously_was)
-    source_was&.update(amount: source_was.amount + amount)
+    return unless amount_previously_changed? || source_id_previously_changed?
+
+    if source_id_previously_changed?
+      source_was = Source.find_by(id: source_id_previously_was)
+      source_was&.update(amount: source_was.amount + amount_was)
+    end
+
     self.source&.update(amount: source.amount - amount)
   end
 

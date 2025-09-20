@@ -33,6 +33,11 @@
         <%= f.checkbox :replenishment %>
       </div>
 
+      <div>
+        <%= f.label :created_at, 'Дата траты' %>
+        <%= f.date_field :created_at %>
+      </div>
+
       <%= f.submit params[:spend_id] ? 'Применить' : 'Добавить', class: 'btn' %>
     <% end %>
   </div>      
