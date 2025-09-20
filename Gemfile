@@ -26,6 +26,8 @@ group :development, :test do
   gem 'capistrano-rails', '1.7.0'
   gem 'capistrano-rvm'
   gem 'capistrano3-puma' , group: :development
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]

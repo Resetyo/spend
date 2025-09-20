@@ -6,6 +6,7 @@ class SpendItem < ApplicationRecord
 
   before_save :revert_amount, if: :replenishment?
   after_save :change_source_amount
+  after_destroy :revert_source_amount
 
   default_scope { order(created_at: :desc) }
 
@@ -20,6 +21,11 @@ class SpendItem < ApplicationRecord
   end
 
   def change_source_amount
+    Source.find_by(id: source_id_was)&.update(amount: source.amount + amount)
     self.source&.update(amount: source.amount - amount)
+  end
+
+  def revert_source_amount
+    self.source&.update(amount: source.amount + amount)
   end
 end
