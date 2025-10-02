@@ -35,7 +35,7 @@
 
       <div>
         <%= f.label :created_at, 'Дата траты' %>
-        <%= f.date_field :created_at %>
+        <%= f.datetime_select :created_at %>
       </div>
 
       <%= f.submit params[:spend_id] ? 'Применить' : 'Добавить', class: 'btn' %>

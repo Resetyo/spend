@@ -5,7 +5,7 @@ class SpendsController < ApplicationController
     @spends = SpendItem.all
     @spend = if params[:spend_id]
                spend = SpendItem.find(params[:spend_id])
-               spend.like = 1 if spend.like_id
+               spend.like = '1' if spend.like_id
                spend
              else
                SpendItem.new
@@ -30,7 +30,7 @@ class SpendsController < ApplicationController
 
   def create
     @spend_item = SpendItem.new(spend_item_params)
-    @spend_item.like_id = spend_item_params[:like] ? current_user.id : nil
+    @spend_item.like_id = spend_item_params[:like].to_i == 1 ? current_user.id : nil
 
     if @spend_item.save
       redirect_to spends_path
@@ -42,7 +42,7 @@ class SpendsController < ApplicationController
   def update
     @spend_item = SpendItem.find(params[:id])
     @spend_item.assign_attributes(spend_item_params)
-    @spend_item.like_id = spend_item_params[:like] ? current_user.id : nil
+    @spend_item.like_id = spend_item_params[:like].to_i == 1 ? current_user.id : nil
 
     if @spend_item.save
       redirect_to spends_path
