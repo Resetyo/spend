@@ -26,6 +26,9 @@ class SpendsController < ApplicationController
         group_by_category.sum(&:amount)
       end
     end
+
+    date = params[:date].present? && Time.zone.parse(params[:date])
+    @month = params[:month] || (date || Time.zone.now).strftime('%m-%y')
   end
 
   def create
@@ -60,6 +63,7 @@ class SpendsController < ApplicationController
   private
 
   def spend_item_params
-    params.require(:spend_item).permit(:title, :category_id, :amount, :source_id, :like, :created_at, :replenishment)
+    params.require(:spend_item)
+          .permit(:title, :category_id, :amount, :source_id, :target_id, :like, :created_at, :replenishment)
   end
 end

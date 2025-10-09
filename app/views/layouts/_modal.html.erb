@@ -38,6 +38,11 @@
         <%= f.datetime_select :created_at %>
       </div>
 
+      <div>
+        <%= f.label :target_id, 'Источник получения средств' %>
+        <%= f.select :target_id, Source.all.map { |source| ["#{source.title} #{source.amount}р.", source.id] } %>
+      </div>
+
       <%= f.submit params[:spend_id] ? 'Применить' : 'Добавить', class: 'btn' %>
     <% end %>
   </div>      

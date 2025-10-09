@@ -29,7 +29,13 @@
     </table>
 
     <ul class="menu date-btn">
-      <li><button class="btn">Выбрать дату</button></li>
+      <li>
+        <%= form_tag total_spends_path(), method: :get, turbo: true, data: { turbo: true, turbo_stream: true } do %>
+          <%= label_tag :date, 'Выбрать месяц' %>
+          <%= date_field_tag :date, params[:date] %>
+          <%= submit_tag 'Применить' %>
+        <% end %>
+      </li>
     </ul>
 
     <div class="chart"> 
@@ -45,8 +51,8 @@
 <script data-turbo-track="reload">
   const chart1labels = <%= raw @grouped_items.keys.to_json %>;
   const chart1data = <%= @grouped_items.values.map { |by_date| by_date.values.sum } %>;
-  const chart2labels = <%= raw @grouped_items[@grouped_items.keys.first]&.keys&.to_json %>;
-  const chart2data = <%= @grouped_items[@grouped_items.keys.first]&.values %>;
+  const chart2labels = <%= raw @grouped_items[@month]&.keys&.to_json %>;
+  const chart2data = <%= @grouped_items[@month]&.values %>;
 </script>
 
 <%= javascript_include_tag 'chart.js', "data-turbo-track": "reload" %>

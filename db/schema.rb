@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_19_034028) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_08_142938) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -38,6 +38,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_034028) do
     t.integer "like_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "target_id"
   end
 
   create_table "users", force: :cascade do |t|
