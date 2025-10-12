@@ -20,7 +20,12 @@
             <td><%= spend.title %></td>
             <td><%= @categories.find { _1.last == spend.category_id }&.first %></td>
             <td style="<%= 'background-color: #a3a300;' if spend.amount < 0 %>"><%= spend.amount.abs %></td>
-            <td><%= @sources.find { _1.last == spend.source_id }&.first %></td>
+            <td>
+              <%= @sources[spend.source_id] %>
+              <% if spend.target_id %>
+              -> <%= @sources[spend.target_id] %>
+              <% end %>
+            </td>
             <td>
               <%= spend.like_id %>
               <%= link_to 'Изм', spends_path(spend_id: spend.id) %>

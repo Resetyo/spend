@@ -11,7 +11,7 @@ class SpendsController < ApplicationController
                SpendItem.new
              end
     @categories = Category.pluck(:title, :id)
-    @sources = Source.pluck(:title, :id)
+    @sources = Source.pluck(:id, :title).to_h
   end
 
   def total
