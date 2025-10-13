@@ -35,7 +35,7 @@
 
       <div>
         <%= f.label :created_at, 'Дата траты' %>
-        <%= f.datetime_select :created_at %>
+        <%= f.datetime_select :created_at, default: @last_time || Time.zone.now %>
       </div>
 
       <div>

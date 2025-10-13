@@ -12,6 +12,8 @@ class SpendsController < ApplicationController
              end
     @categories = Category.pluck(:title, :id)
     @sources = Source.pluck(:id, :title).to_h
+    first_spend = @spends.first&.created_at
+    @last_time = first_spend && first_spend.day < Time.zone.now.day ? first_spend + 1.minute : nil
   end
 
   def total

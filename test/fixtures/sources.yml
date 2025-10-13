@@ -2,8 +2,12 @@
 
 one:
   title: MyString
-  type: 1
+  amount: 100
 
 two:
-  title: MyString
-  type: 1
+  title: MyString2
+  amount: 200
+
+three:
+  title: MyString3
+  amount: 300

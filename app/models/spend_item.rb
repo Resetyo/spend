@@ -26,12 +26,14 @@ class SpendItem < ApplicationRecord
 
     if source_id_previously_changed?
       source_was = Source.find_by(id: source_id_previously_was)
-      source_was&.update(amount: source_was.amount + amount_was)
+      source_was&.update(amount: source_was.amount + amount_previously_was)
+    else
+      self.source&.update(amount: source.amount + amount_previously_was) if amount_previously_changed?
     end
 
     if target_id_previously_changed?
       target_was = Source.find_by(id: target_id_previously_was)
-      target_was&.update(amount: target_was.amount + amount_was)
+      target_was&.update(amount: target_was.amount - amount_previously_was)
     end
 
     self.source&.update(amount: source.amount - amount)
