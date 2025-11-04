@@ -25,8 +25,14 @@ class SpendsController < ApplicationController
                               .transform_values do |group_by_date|
       group_by_date.group_by { |item| @categories.find { |category| category.last == item.category_id }&.first }
                    .transform_values do |group_by_category|
-        group_by_category.sum(&:amount)
+        group_by_category.sum { |item| item.amount > 0 ? item.amount : 0 }
       end
+    end
+
+    @grouped_earnings = SpendItem.all
+                                 .group_by { |item| item.created_at.strftime('%m-%y') }
+                                 .transform_values do |group_by_date|
+      group_by_date.sum { |item| item.amount < 0 ? -item.amount : 0 }
     end
 
     date = params[:date].present? && Time.zone.parse(params[:date])

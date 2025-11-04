@@ -38,10 +38,12 @@
       </li>
     </ul>
 
+    <h2>Траты по категориям за месяц</h2>
     <div class="chart"> 
         <canvas id="chart2"></canvas>
     </div>
 
+    <h2>Траты/доход по месяцам</h2>
     <div class="chart">
         <canvas id="chart1"></canvas>
     </div>
@@ -50,9 +52,10 @@
 
 <script data-turbo-track="reload">
   const chart1labels = <%= raw @grouped_items.keys.to_json %>;
-  const chart1data = <%= @grouped_items.values.map { |by_date| by_date.values.sum } %>;
-  const chart2labels = <%= raw @grouped_items[@month]&.keys&.to_json %>;
-  const chart2data = <%= @grouped_items[@month]&.values %>;
+  const chart1data = <%= raw @grouped_items.values.map { |by_date| by_date.values.sum }.to_json %>;
+  const chart1data2 = <%= raw @grouped_items.keys.map { |date| @grouped_earnings[date] }.to_json %>;
+  const chart2labels = <%= raw Array.wrap(@grouped_items[@month]&.keys).to_json %>;
+  const chart2data = <%= raw Array.wrap(@grouped_items[@month]&.values).to_json %>;
 </script>
 
 <%= javascript_include_tag 'chart.js', "data-turbo-track": "reload" %>

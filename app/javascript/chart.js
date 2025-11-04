@@ -4,13 +4,22 @@ new Chart(ctx, {
   type: 'bar',
   data: {
     labels: chart1labels,
-    datasets: [{
-      label: 'Траты в месяц',
-      data: chart1data,
-      borderWidth: 1,
-      backgroundColor: '#57A0FA',
-      borderColor: '#333'
-    }]
+    datasets: [
+      {
+        label: 'Траты в месяц',
+        data: chart1data,
+        borderWidth: 1,
+        backgroundColor: '#57A0FA',
+        borderColor: '#333'
+      },
+      {
+        label: 'Доходы в месяц',
+        data: chart1data2,
+        borderWidth: 1,
+        backgroundColor: '#fd2222ff',
+        borderColor: '#333'
+      }
+    ]
   },
   options: {
     scales: {
